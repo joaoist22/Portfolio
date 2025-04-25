@@ -69,26 +69,25 @@ document.addEventListener('DOMContentLoaded', function() {
       
 });
 document.addEventListener('DOMContentLoaded', function () {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const closeMenuBtn = document.querySelector('.close-menu-btn');
+// Selecionar o menu e os links
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
+const closeMenuBtn = document.querySelector('.close-menu-btn');
 
-    // Abrir/fechar o menu ao clicar no botão de toggle
-    if (mobileMenuToggle && mobileMenu) {
-        mobileMenuToggle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        });
-    }
+// Função para fechar o menu
+function closeMobileMenu() {
+    mobileMenu.classList.remove('visible'); // Remove a classe que torna o menu visível
+}
 
-    // Fechar o menu ao clicar no botão de fechar
-    if (closeMenuBtn) {
-        closeMenuBtn.addEventListener('click', function () {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
+// Adicionar evento de clique a cada link do menu
+mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
 
+// Adicionar evento ao botão de fechar
+if (closeMenuBtn) {
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+}
     // Fechar o menu ao clicar em qualquer link
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     mobileNavLinks.forEach(link => {
@@ -389,24 +388,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Remove the old letter-by-letter animation since we now have a more complex CSS animation
-    // const titleElement = document.querySelector('.animated-title');
-    // if (titleElement) {
-    //     const name = titleElement.textContent;
-    //     titleElement.textContent = '';
-    //     
-    //     let delay = 0;
-    //     for (let i = 0; i < name.length; i++) {
-    //         const span = document.createElement('span');
-    //         span.textContent = name[i];
-    //         span.style.display = 'inline-block';
-    //         span.style.opacity = '0';
-    //         span.style.transform = 'translateY(50px)';
-    //         span.style.animation = `revealTitle 0.5s ease ${delay}s forwards`;
-    //         titleElement.appendChild(span);
-    //         delay += 0.1;
-    //     }
-    // }
+// Selecionar todas as caixas e elementos do modal
+const boxes = document.querySelectorAll('.box');
+const modal = document.getElementById('hobby-modal');
+const hobbyTitle = document.getElementById('hobby-title');
+const hobbyDescription = document.getElementById('hobby-description');
+const closeModal = document.getElementById('close-modal');
+
+// Dados dos hobbies
+const hobbies = {
+    ginásio: "Adoro ir ao ginásio para manter-me saudável e ativo.",
+    puzzles: "Gosto de puzzles porque desafiam a minha mente e melhoram a concentração.",
+    desportos: "O desporto mantém-me ativo e saudável, além de ser divertido.",
+    música: "Adoro música porque me ajuda a relaxar e a expressar emoções."
+};
+
+// Adicionar eventos às caixas
+boxes.forEach((box) => {
+    box.addEventListener('click', () => {
+        // Pausar a animação de todas as caixas
+        boxes.forEach((b) => b.classList.add('paused'));
+
+        // Mostrar o modal
+        modal.classList.add('visible');
+
+        // Preencher o título e a descrição
+        const hobbyName = box.querySelector('span')?.textContent.toLowerCase();
+        hobbyTitle.textContent = hobbyName.charAt(0).toUpperCase() + hobbyName.slice(1);
+        hobbyDescription.textContent = hobbies[hobbyName] || "Descrição não disponível.";
+    });
+});
+
+// Fechar o modal
+closeModal.addEventListener('click', () => {
+    // Retomar a animação de todas as caixas
+    boxes.forEach((b) => b.classList.remove('paused'));
+
+    // Esconder o modal
+    modal.classList.remove('visible');
+});
+
+// Fechar o modal
+closeModal.addEventListener('click', () => {
+  // Remover a classe paused de todas as caixas
+  boxes.forEach(box => box.classList.remove('paused'));
+
+  // Esconder o modal
+  modal.classList.remove('visible');
+});
 
     // Improved parallax effect - background scrolls upward as user scrolls down
     window.addEventListener('scroll', function() {
