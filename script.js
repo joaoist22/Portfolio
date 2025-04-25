@@ -68,33 +68,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
       
 });
-document.addEventListener('DOMContentLoaded', function () {
-// Selecionar o menu e os links
-const mobileMenu = document.querySelector('.mobile-menu');
-const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
-const closeMenuBtn = document.querySelector('.close-menu-btn');
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
 
-// Função para fechar o menu
-function closeMobileMenu() {
-    mobileMenu.classList.remove('visible'); // Remove a classe que torna o menu visível
-}
+    // Function to toggle menu
+    const toggleMenu = () => {
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    };
 
-// Adicionar evento de clique a cada link do menu
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+    // Toggle menu on hamburger click
+    mobileMenuToggle.addEventListener('click', toggleMenu);
 
-// Adicionar evento ao botão de fechar
-if (closeMenuBtn) {
-    closeMenuBtn.addEventListener('click', closeMobileMenu);
-}
-    // Fechar o menu ao clicar em qualquer link
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function () {
+    // Close menu on close button click
+    closeMenuBtn.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenuToggle.contains(e.target)) {
+            toggleMenu();
+        }
     });
 });
 
