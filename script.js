@@ -2,52 +2,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Prevent scrolling during intro
     document.body.style.overflow = 'hidden';
     
+    const isMobile = window.innerWidth <= 768;
     const intro = document.querySelector('.star-wars-intro');
     const mainContent = document.querySelector('main');
     const name3dContainer = document.querySelector('.name-3d-container');
-    
-    // Hide main content initially
-    if (mainContent) {
-        mainContent.style.opacity = '0';
-    }
-    
-    
 
-    // After intro animation
-    setTimeout(() => {
-        // Fade out intro
-        if (intro) {
-            intro.style.opacity = '0';
-            intro.style.transition = 'opacity 2s ease';
-        }
-        
-        // Show main content and name
-        if (mainContent) {
-            mainContent.style.opacity = '1';
-            mainContent.style.transition = 'opacity 2s ease';
-        }
-        
-        if (name3dContainer) {
-            name3dContainer.style.opacity = '1';
-            name3dContainer.style.transition = 'opacity 1s ease';
-        }
-        
-        // Enable scrolling
+    if (isMobile) {
+        // On mobile: Remove intro and show content immediately
+        if (intro) intro.remove();
+        if (mainContent) mainContent.style.opacity = '1';
+        if (name3dContainer) name3dContainer.style.opacity = '1';
         document.body.style.overflow = '';
+    } else {
+        // On desktop: Show Star Wars intro
+        document.body.style.overflow = 'hidden';
         
-        // Remove intro after fade
+        if (mainContent) mainContent.style.opacity = '0';
+        
+        // After intro animation
         setTimeout(() => {
+            // Fade out intro
             if (intro) {
-                intro.remove();
+                intro.style.opacity = '0';
+                intro.style.transition = 'opacity 2s ease';
             }
-        }, 2000);
-    }, 13000); // Changed from 45s to 15s
-    var typing = new Typed(".text", {
-        strings: ["", "creators.", "editors."],
-        typeSpeed: 100,
-        backSpeed: 40,
-        loop: true
-      });
+            
+            // Show main content and name
+            if (mainContent) {
+                mainContent.style.opacity = '1';
+                mainContent.style.transition = 'opacity 2s ease';
+            }
+            
+            if (name3dContainer) {
+                name3dContainer.style.opacity = '1';
+                name3dContainer.style.transition = 'opacity 1s ease';
+            }
+            
+            // Enable scrolling
+            document.body.style.overflow = '';
+            
+            // Remove intro after fade
+            setTimeout(() => {
+                if (intro) intro.remove();
+            }, 2000);
+        }, 13000);
+    }
       
       // GSAP
       gsap.registerPlugin(ScrollTrigger);

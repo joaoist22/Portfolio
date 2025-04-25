@@ -3793,3 +3793,22 @@ footer {
 .contact-item .contact-link:hover .detail:after {
     width: 100%;
 }
+/* Star Wars intro media query */
+@media (max-width: 768px) {
+  .star-wars-intro {
+      display: none; /* Hide Star Wars intro on mobile */
+  }
+
+  /* Reset any Star Wars related animations/delays */
+  body {
+      animation: none;
+      opacity: 1;
+  }
+
+  /* Ensure content is immediately visible on mobile */
+  #hero, header, main {
+      animation: none;
+      opacity: 1;
+  }
+}
+

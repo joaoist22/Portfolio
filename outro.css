@@ -1,0 +1,99 @@
+/* Mobile-specific image fixes */
+@media (max-width: 768px) {
+    /* Common image styles for mobile */
+    .bg-img img,
+    .about-photo,
+    .education-logo,
+    .org-logo,
+    .hobby-image {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
+    /* Hobby section images */
+    .main-grid .box {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 10px auto !important;
+        aspect-ratio: 1/1 !important;
+    }
+
+    .main-grid .bg-img {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+        border-radius: 10px !important;
+    }
+
+    .main-grid .bg-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    /* About section photo */
+    .about-photo-wrapper {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto 20px !important;
+        aspect-ratio: 1/1 !important;
+        overflow: hidden !important;
+    }
+
+    .about-photo {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 15px !important;
+    }
+
+    /* Organization logos */
+    .org-logo {
+        width: 50px !important;
+        height: 50px !important;
+        margin-right: 10px !important;
+    }
+
+    /* Education logo */
+    .education-logo {
+        max-width: 200px !important;
+        height: auto !important;
+        margin: 20px auto !important;
+    }
+
+    /* Fix for grid layouts */
+    .experience-grid,
+    .skills-container,
+    .main-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+    }
+
+    /* Container spacing */
+    .content-wrap {
+        padding: 20px !important;
+    }
+
+    /* Image hover effects for mobile */
+    .bg-img:hover img {
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* High DPI screens */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2), 
+       (max-width: 768px) and (min-resolution: 192dpi) {
+    .bg-img img,
+    .about-photo,
+    .education-logo,
+    .org-logo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}

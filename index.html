@@ -126,6 +126,8 @@
     </style>
     
     <!-- Link to external imagefixes CSS -->
+
+
     <link rel="stylesheet" href="imagefixes.css">
 </head>
 <script>
@@ -300,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <body>
     <!-- Add this right after <body> -->
-    <div class="star-wars-intro">
+    <div class="star-wars-intro desktop-only">
         <div class="star-wars-background">
             <img src="star.jpeg" alt="stars">
         </div>
@@ -583,7 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <div class="box">
                             <div class="bg-img">
-                                <img src="./music.JPEG" alt="Musica">
+                                <img src="./music.JPEG" alt="Musica" >
                             </div>
                         </div>
                         <div class="box box-text">
@@ -775,4 +777,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 </script>
 </body>
+<!-- Add this script at the bottom of the body -->
+<script>
+    // Check if device is mobile and handle content accordingly
+    document.addEventListener('DOMContentLoaded', function() {
+        const isMobile = window.innerWidth <= 768;
+        const starWarsIntro = document.querySelector('.star-wars-intro');
+        
+        if (isMobile) {
+            // Remove Star Wars intro and show content immediately
+            if (starWarsIntro) {
+                starWarsIntro.remove();
+            }
+            // Remove any initial hiding of content
+            document.body.style.opacity = '1';
+            document.querySelector('main').style.opacity = '1';
+            document.querySelector('header').style.opacity = '1';
+        }
+    });
+
+    // Handle resize events
+    window.addEventListener('resize', function() {
+        const isMobile = window.innerWidth <= 768;
+        const starWarsIntro = document.querySelector('.star-wars-intro');
+        
+        if (isMobile && starWarsIntro) {
+            starWarsIntro.style.display = 'none';
+        } else if (starWarsIntro) {
+            starWarsIntro.style.display = 'block';
+        }
+    });
+</script>
 </html>
