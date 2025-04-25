@@ -67,7 +67,17 @@ h1, h2, h3 {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
+/* Ajustes para Star Wars Intro no Mobile */
+@media (max-width: 768px) {
+  .star-wars-intro .text {
+      font-size: 3vw; /* Reduz o tamanho do texto */
+      line-height: 1.2; /* Ajusta o espaçamento entre linhas */
+  }
 
+  .crawl {
+      animation: crawl 40s linear; /* Reduz a duração da animação */
+  }
+}
 .background-container {
     position: fixed;
     top: 0;

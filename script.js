@@ -60,13 +60,34 @@ document.addEventListener('DOMContentLoaded', function() {
           duration: 0.3 // full text duration
         });
       });
-
+      
     // Initialize Circuit Effect Animations
     const circuitHeader = document.querySelector('.circuit-effect .header');
     if (circuitHeader) {
         circuitHeader.style.animation = 'fadeIn 2s ease-in-out';
     }
       
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+
+    // Abrir/fechar o menu ao clicar no botão de toggle
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+    }
+
+    // Fechar o menu ao clicar no botão de fechar
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', function () {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
