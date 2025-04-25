@@ -88,6 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.overflow = '';
         });
     }
+
+    // Fechar o menu ao clicar em qualquer link
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
